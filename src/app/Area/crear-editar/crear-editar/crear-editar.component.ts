@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AreaService } from '../../services/AreaService.component';
 
 @Component({
@@ -13,10 +13,15 @@ export class CrearEditarAreaComponent implements OnInit {
 
   areaForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private areaService: AreaService) {
+  constructor(
+    private fb: FormBuilder, 
+    private route: ActivatedRoute, 
+    private areaService: AreaService,
+    private router: Router
+    ) {
     
     this.areaForm = this.fb.group({
-      idArea: [''], // Puedes dejarlo en blanco para que se genere automáticamente al crear
+      idArea: [0], // Puedes dejarlo en blanco para que se genere automáticamente al crear
       descripcion: ['', Validators.required]
     });
 
@@ -49,13 +54,14 @@ export class CrearEditarAreaComponent implements OnInit {
       // Aquí puedes enviar los datos al servidor o realizar la acción que desees
       console.log(formData);
 
-      if (formData.idArea) {
+      if (formData.idArea!=0) {
         console.log("editamos");
         // Estás en modo edición: realiza la lógica de actualización
         this.areaService.updateArea(formData.idArea, formData).subscribe((result) => {
           console.log(result);
           if(result.estatus){//Si fue correcto el proceso
             alert(result.msg);
+            this.router.navigate(['area/listar']);
           }else{            //Si hubo un error
             alert(result.msg);
           }
@@ -67,6 +73,7 @@ export class CrearEditarAreaComponent implements OnInit {
           console.log(result);
           if(result.estatus){//Si fue correcto el proceso
             alert(result.msg);
+            this.router.navigate(['area/listar']);
           }else{            //Si hubo un error
             alert(result.msg);
           }

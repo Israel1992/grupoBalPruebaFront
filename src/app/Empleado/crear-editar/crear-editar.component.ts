@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmpleadoService } from '../services/EmpleadoService.component';
 import { AreaService } from 'src/app/Area/services/AreaService.component';
 
@@ -16,7 +16,12 @@ export class CrearEditarEmpleadoComponent implements OnInit {
   seleccion: number = 0;
   areas: any[] = [];
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private empleadoService: EmpleadoService,private areaService: AreaService) {
+  constructor(
+    private fb: FormBuilder, 
+    private route: ActivatedRoute, 
+    private empleadoService: EmpleadoService,
+    private areaService: AreaService,
+    private router: Router) {
     
     this.empleadoForm = this.fb.group({
       IdEmpleado:[0],
@@ -25,8 +30,6 @@ export class CrearEditarEmpleadoComponent implements OnInit {
       Telefono: [''],
       IdArea: ['']
     });
-
-    
 
     this.route.params.subscribe(params => {
       const id = +params['id']; 
@@ -53,8 +56,13 @@ export class CrearEditarEmpleadoComponent implements OnInit {
   cargarAreas() {
     this.areaService.getAreas().subscribe((result) => {
       console.log(result);
-      if(result.estatus)
+      if(result.estatus){
         this.areas = result.datos;
+        if(this.areas.length==0){
+          alert("Debe crear áreas antes de generar un nuevo empleado.");
+        }
+      }
+        
     });
     
   }
@@ -78,6 +86,7 @@ export class CrearEditarEmpleadoComponent implements OnInit {
           console.log(result);
           if(result.estatus){//Si fue correcto el proceso
             alert(result.msg);
+            this.router.navigate(['empleado/listar']);
           }else{            //Si hubo un error
             alert(result.msg);
           }
@@ -89,6 +98,7 @@ export class CrearEditarEmpleadoComponent implements OnInit {
           console.log(result);
           if(result.estatus){//Si fue correcto el proceso
             alert(result.msg);
+            this.router.navigate(['empleado/listar']);
           }else{            //Si hubo un error
             alert(result.msg);
           }
