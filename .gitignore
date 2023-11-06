@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Angular
+/dist/
+/tmp/
+.angular/
+
+# IDE (ejemplos: Visual Studio Code, WebStorm, etc.)
+.idea/
+.vscode/
+
+
+# Otros archivos generados por Angular CLI
+e2e/*.js
+e2e/*.js.map
+
+# Archivos temporales y compilados
+build/

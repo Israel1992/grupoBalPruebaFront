@@ -1,0 +1,16 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form [formGroup]="areaForm" (ngSubmit)="guardar()">
+                <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <input type="text" id="descripcion" formControlName="descripcion" class="form-control" />
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+

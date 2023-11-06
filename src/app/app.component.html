@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+      <a class="navbar-brand" href="#">Prueba</a>
+    
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <br/>
+<button style="float:right" class="btn btn-outline-info" [routerLink]="['/area/listar']">Listar Areas</button>
+<button style="float:right" class="btn btn-outline-info" [routerLink]="['/empleado/listar']">Listar Empleados</button>
+<br/>
+  <router-outlet></router-outlet>
+</div>

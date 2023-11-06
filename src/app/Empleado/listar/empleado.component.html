@@ -1,0 +1,46 @@
+
+<h2>Lista de areas</h2>
+<div class="row">
+  <div class="col-md-10">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>nombre</th>
+        <th>correo</th>
+        <th>telefono</th>
+        <th>area</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empleado of empleados">
+        <td>
+            {{ empleado.idEmpleado }}
+        </td>
+        <td>
+          {{ empleado.nombre }}
+        </td>
+        <td>
+          {{ empleado.correo }}
+        </td>
+        <td>
+          {{ empleado.telefono }}
+        </td>
+        <td>
+          {{ empleado.idAreaNavigation.descripcion }}
+        </td>
+        
+        <td>
+            <button (click)="editar(empleado.idEmpleado)" class="btn btn-outline-info" >EDITAR</button>
+            <button (click)="eliminar(empleado.idEmpleado)" class="btn btn-danger" >ELIMINAR </button>
+        </td>
+       
+      
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+<br>
+  <button (click)="crear()" class="btn btn-primary">CREAR NUEVO</button>

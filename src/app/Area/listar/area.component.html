@@ -1,0 +1,34 @@
+
+<h2>Lista de areas</h2>
+<div class="row">
+  <div class="col-md-6">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Descripción</th>
+        <th></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let area of areas">
+        <td>
+            {{ area.idArea }}
+        </td>
+        <td>
+          {{ area.descripcion }}
+        </td>
+        <td>
+            <button (click)="editar(area.idArea)" class="btn btn-outline-info" >EDITAR</button>
+            <button (click)="eliminar(area.idArea)" class="btn btn-danger" >ELIMINAR </button>
+        </td>
+       
+      
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+  <button (click)="crear()" class="btn btn-primary">CREAR NUEVO</button>
